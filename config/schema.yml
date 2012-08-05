@@ -1,0 +1,40 @@
+propel:
+  _attributes:
+    package: lib.model
+  answer:
+    _attributes: { idMethod: native }
+    id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    user_id: { type: INTEGER, required: true, foreignTable: user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    answer_id: { type: INTEGER, required: true, foreignTable: answer, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    body: { type: VARCHAR, size: '2000', required: true }
+    created_at: { type: TIMESTAMP, required: true }
+    _indexes: { user_id: [user_id], answer_id: [answer_id] }
+  interest:
+    _attributes: { idMethod: native }
+    id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    user_id: { type: INTEGER, required: true, foreignTable: user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    question_id: { type: INTEGER, required: true, foreignTable: question, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: INTEGER, required: true }
+    _indexes: { question_id: [question_id], user_id: [user_id] }
+  question:
+    _attributes: { idMethod: native }
+    id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    user_id: { type: INTEGER, required: true, foreignTable: user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    title: { type: VARCHAR, size: '500', required: true }
+    body: { type: VARCHAR, size: '2000' }
+    created_at: { type: TIMESTAMP, required: true }
+    updated_at: { type: TIMESTAMP }
+    _indexes: { user_id: [user_id] }
+  relevancy:
+    id: { type: INTEGER, required: true, primaryKey: true }
+    user_id: { type: INTEGER, required: true, foreignTable: user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    answer_id: { type: INTEGER, required: true, foreignTable: answer, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    score: { type: VARCHAR, size: '2000' }
+    created_at: { type: TIMESTAMP, required: true }
+    _indexes: { user_id: [user_id], answer_id: [answer_id] }
+  user:
+    _attributes: { idMethod: native }
+    id: { type: INTEGER, required: true, autoIncrement: true, primaryKey: true }
+    first_name: { type: VARCHAR, size: '100', required: true }
+    last_name: { type: VARCHAR, size: '100', required: true }
+    created_at: { type: TIMESTAMP, required: true }
