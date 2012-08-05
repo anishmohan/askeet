@@ -9,4 +9,8 @@
  */ 
 class Answer extends BaseAnswer
 {
+	public function __toString()
+	{
+		return $this->getTitle();
+	}
 }
